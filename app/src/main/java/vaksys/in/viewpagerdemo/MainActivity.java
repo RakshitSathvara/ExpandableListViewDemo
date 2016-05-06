@@ -1,6 +1,7 @@
 package vaksys.in.viewpagerdemo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -108,14 +109,16 @@ public class MainActivity extends AppCompatActivity {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 // TODO Auto-generated method stub
-                Toast.makeText(
-                        getApplicationContext(),
-                        listDataHeader.get(groupPosition)
-                                + " : "
-                                + listDataChild.get(
-                                listDataHeader.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT)
+                Toast.makeText(getApplicationContext(), listDataHeader.get(groupPosition) + " : " + listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT)
                         .show();
+
+                if (groupPosition == 0 || childPosition == 0) {
+                    startActivity(new Intent(MainActivity.this, OneActivity.class));
+                }
+
+                if (groupPosition == 0 || childPosition == 1) {
+                    startActivity(new Intent(MainActivity.this, TwoActivity.class));
+                }
                 return false;
             }
         });
